@@ -4,7 +4,7 @@ from app.db import db_handler
 from app.utils import hash_sha1
 
 # constants
-TITLE = "My App Title"
+TITLE = "Choose-Watch-Enjoy"
 
 def get_db():
     if 'db' not in g:
@@ -32,6 +32,12 @@ def index():
         }
     ]
     return render_template('index.html', title=TITLE, user=user, posts=posts)
+
+@app.route('/users')
+def users():
+	db = get_db()
+	users = db.query("SELECT first_name,last_name FROM user")
+	return render_template('users.html', users=users)
 
 @app.route('/login', methods=['POST', 'GET'])
 def login():
