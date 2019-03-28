@@ -1,10 +1,17 @@
 ### Test SQL queries
 ```
 source .env/bin/activate
-
+```
 # optional
 # edit conf/schema.sql and run
+
+```
 python app/init_db.py
+```
+# delete db
+
+```
+rm database.db
 
 python
 import app.db as db
@@ -21,3 +28,14 @@ import app.utils as utils
 utils.hash_sha1('test')
 
 ```
+### create routes
+@app.routes('/user')
+def user():
+db = get_db()
+users = db.query("SELECT first_name,last_name FROM user")
+return render_template('users.html', users=users)
+
+### copy file
+cp (file ( /app....)) (file (/app....))
+
+
