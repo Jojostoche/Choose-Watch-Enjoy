@@ -94,6 +94,32 @@ def ex1():
     ]
     return render_template('ex1.html', title=title, user=user, posts=posts)
 
-@app.routes('films')
+@app.route('/addfilm')
+def add_film():
+    title="Choose-Watch-Enjoy - Add a new film"
+    error = None
+    msg = None
+    if session['username']:
+        if request.method=='POST':
+            duration = request.form['duration']
+            date = request.form['date']
+            grade = request.form['grade']
+            original_title = request.form['original_title']
+            original_language = request.form['original_language']
+            age = request.form['age']
+            if duration is None or date is None or grade is None or original_title is None or original_title is None or age is None :
+                error = 'All fields are mandatory.'
+            else:
+                db = get_db()
+                db.add_film(duration, date, grade, original_title, original_language, age)
+                msg = 'Film was successfully added!'
+        return render_template('addfilm.html', title=title, msg=msg, error=error)
+    else:
+        return redirect(url_for('login'))
+
+@app.route('/films')
 def films():
-	
+    title="MyApp - List films"
+    db = get_db()
+    films = db.query("SELECT * from film")
+    return render_template('films.html', title=title, films=films)
