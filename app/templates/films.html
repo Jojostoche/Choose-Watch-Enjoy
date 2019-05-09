@@ -6,12 +6,12 @@
       		<br>
 		<table class="table">
 		<thead>
-			<tr><td><strong>Titre</strong></td><td><strong>Note</strong></td></tr>
+			<tr><td><strong>Original title</strong></td><td><strong>Original language</strong></td><td><strong>Duration</strong></td><td><strong>Date</strong></td><td><strong>Grade</strong></td><td><strong>Age</strong></td></tr>
 		</thead>
 		<tbody>
     		{% for film in films %}
 		<tr>
-			<td>{{ film.titre }}</td><td>{{ film.note }}</td>
+			<td>{{ film.original_title }}</td><td>{{ film.original_language }}</td><td>{{ film.duration }}</td><td>{{ film.date }}</td><td>{{ film.grade }}</td><td>{{ film.age }}</td>
 		</tr>
     		{% endfor %}
 		</tbody>

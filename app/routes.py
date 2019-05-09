@@ -42,12 +42,13 @@ def add_user():
             email = request.form['email']
             username = request.form['username']
             passwd = request.form['password']
-            if firstname is None or lastname is None or email is None or username is None or passwd is None:
+            role = request.form['role']
+            if firstname is None or lastname is None or email is None or username is None or passwd is None or role is None:
                 error = 'All fields are mandatory.'
             else:
                 passwd_hash = hash_sha1(passwd) 
                 db = get_db()
-                db.add_user(username, passwd_hash, firstname, lastname, email)
+                db.add_user(username, passwd_hash, firstname, lastname, email, role)
                 msg = 'User was successfully added!'
         return render_template('adduser.html', title=title, msg=msg, error=error)
     else:
@@ -94,25 +95,25 @@ def ex1():
     ]
     return render_template('ex1.html', title=title, user=user, posts=posts)
 
-@app.route('/addfilm')
+@app.route('/addfilm', methods=['POST', 'GET'])
 def add_film():
     title="Choose-Watch-Enjoy - Add a new film"
     error = None
     msg = None
     if session['username']:
         if request.method=='POST':
-            duration = request.form['duration']
-            date = request.form['date']
-            grade = request.form['grade']
-            original_title = request.form['original_title']
-            original_language = request.form['original_language']
-            age = request.form['age']
-            if duration is None or date is None or grade is None or original_title is None or original_title is None or age is None :
-                error = 'All fields are mandatory.'
-            else:
-                db = get_db()
-                db.add_film(duration, date, grade, original_title, original_language, age)
-                msg = 'Film was successfully added!'
+        	   original_title = request.form['original_title']
+        	   original_language = request.form['original_language']
+        	   duration = request.form['duration']
+        	   date = request.form['date']
+        	   grade = request.form['grade']
+        	   age = request.form['age']
+        	   if original_title is None or original_language is None or duration is None or date is None or grade is None or age is None :
+        	   	error = 'All fields are mandatory.'
+        	   else:
+        	   	db = get_db()
+        	   	db.add_film(original_title, original_language, duration, date, grade, age)
+        	   	msg = 'Film was successfully added!'
         return render_template('addfilm.html', title=title, msg=msg, error=error)
     else:
         return redirect(url_for('login'))

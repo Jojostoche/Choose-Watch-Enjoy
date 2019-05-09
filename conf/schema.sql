@@ -112,7 +112,10 @@ CREATE TABLE user (
     passwd_hash varchar(64) NOT NULL,
     first_name varchar(64) NOT NULL,
     last_name varchar(64) NOT NULL,
-    email varchar(128) NOT NULL
+    email varchar(128) NOT NULL,
+    role_id integer NOT NULL,
+    CONSTRAINT role_id_user FOREIGN KEY (role_id)
+    REFERENCES role (id)
 );
 
 -- Table: role
