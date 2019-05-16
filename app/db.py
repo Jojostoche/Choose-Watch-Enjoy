@@ -75,3 +75,9 @@ class db_handler:
             Add a new film
         """
         self.edit('INSERT INTO film (original_title, original_language, duration, date, grade, age) VALUES (?,?,?,?,?,?)', (original_title, original_language, duration, date, grade, age,))
+ 
+    def add_actor(self, name):
+        """
+            Add a new actor
+        """
+        self.edit('INSERT INTO actor (name) VALUES (?)', (name,))

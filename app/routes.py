@@ -3,6 +3,8 @@ from flask import g, render_template, redirect, url_for, request, session
 from app.db import db_handler
 from app.utils import hash_sha1
 
+APP_NAME = "Choose-Watch-Enjoy"
+
 def get_db():
     if 'db' not in g:
         g.db = db_handler()
@@ -17,12 +19,12 @@ def teardown_db(exception):
 @app.route('/')
 @app.route('/index')
 def index():
-    title="MyApp - Welcome!"
+    title= APP_NAME + " | Welcome!"
     return render_template('index.html', title=title)
 
 @app.route('/users')
 def users():
-    title="MyApp - List users"
+    title= APP_NAME + " | List users"
     if session['username']:
         db = get_db()
         users = db.query("SELECT * from user")
@@ -32,7 +34,7 @@ def users():
 
 @app.route('/adduser', methods=['POST', 'GET'])
 def add_user():
-    title="MyApp - Add a new user"
+    title= APP_NAME + " | Add a new user"
     error = None
     msg = None
     if session['username']:
@@ -56,7 +58,7 @@ def add_user():
 
 @app.route('/login', methods=['POST', 'GET'])
 def login():
-    title="MyApp - Login"
+    title= APP_NAME + " | Login"
     error = None
     if request.method=='POST':
         username = request.form['username']
@@ -74,7 +76,7 @@ def login():
 
 @app.route('/logout')
 def logout():
-    title="MyApp - Logout"
+    title= APP_NAME + " | Logout"
     g.username = None
     session['username'] = None
     return render_template('logout.html', title=title)
@@ -97,7 +99,7 @@ def ex1():
 
 @app.route('/addfilm', methods=['POST', 'GET'])
 def add_film():
-    title="Choose-Watch-Enjoy - Add a new film"
+    title= APP_NAME + " | Add a new film"
     error = None
     msg = None
     if session['username']:
@@ -120,7 +122,50 @@ def add_film():
 
 @app.route('/films')
 def films():
-    title="MyApp - List films"
+    title= APP_NAME + " | List films"
     db = get_db()
     films = db.query("SELECT * from film")
     return render_template('films.html', title=title, films=films)
+    
+@app.route('/addactor', methods=['POST', 'GET'])
+def add_actors():
+    title= APP_NAME + " | Add a new actor"
+    error = None
+    msg = None
+    if session['username']:
+        if request.method=='POST':
+        	   name = request.form['name']
+        	   if name is None :
+        	   	error = 'All fields are mandatory.'
+        	   else:
+        	   	db = get_db()
+        	   	db.add_actor(name)
+        	   	msg = 'Actor was successfully added!'
+        return render_template('addactor.html', title=title, msg=msg, error=error)
+    else:
+        return redirect(url_for('login'))
+        
+@app.route('/actors')
+def actors():
+    title= APP_NAME + " | List actors"
+    db = get_db()
+    actors = db.query("SELECT * from actor")
+    return render_template('actors.html', title=title, actors=actors)
+    
+@app.route('/addstudio', methods=['POST', 'GET'])
+def add_actors():
+    title= APP_NAME + " | Add a new actor"
+    error = None
+    msg = None
+    if session['username']:
+        if request.method=='POST':
+        	   name = request.form['name']
+        	   if name is None :
+        	   	error = 'All fields are mandatory.'
+        	   else:
+        	   	db = get_db()
+        	   	db.add_actor(name)
+        	   	msg = 'Actor was successfully added!'
+        return render_template('addactor.html', title=title, msg=msg, error=error)
+    else:
+        return redirect(url_for('login'))
