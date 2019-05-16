@@ -128,7 +128,7 @@ def films():
     return render_template('films.html', title=title, films=films)
     
 @app.route('/addactor', methods=['POST', 'GET'])
-def add_actors():
+def add_actor():
     title= APP_NAME + " | Add a new actor"
     error = None
     msg = None
@@ -153,7 +153,7 @@ def actors():
     return render_template('actors.html', title=title, actors=actors)
     
 @app.route('/addstudio', methods=['POST', 'GET'])
-def add_actors():
+def add_studio():
     title= APP_NAME + " | Add a new actor"
     error = None
     msg = None
@@ -169,3 +169,9 @@ def add_actors():
         return render_template('addactor.html', title=title, msg=msg, error=error)
     else:
         return redirect(url_for('login'))
+
+@app.route('/deletefilm')
+def delete_film(request):
+    db = get_db()
+    db.query("DELETE FROM film WHERE id=" + request.query_string['id']) 
+    return redirect(url_for('films'))
