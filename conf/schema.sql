@@ -90,7 +90,7 @@ CREATE TABLE nationality (
 CREATE TABLE studio (
     name varchar(64) NOT NULL,
     id integer NOT NULL CONSTRAINT studio_pk PRIMARY KEY,
-    zip code varchar(64) NOT NULL,
+    zip_code varchar(64) NOT NULL,
     country varchar(64) NOT NULL,
     website varchar(255) NOT NULL
 );
