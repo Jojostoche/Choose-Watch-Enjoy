@@ -1,1 +1,27 @@
+{% extends "base.html" %}
 
+{% block content %}
+	<div class="container">
+		<h1>List of Studios</h1>
+      		<br>
+		<table class="table">
+		<thead>
+			<tr><td><strong>name</strong></td>
+        <td><strong>zip_code</strong></td>
+        <td><strong>country</strong></td>
+        <td><strong>website</strong></td>
+      </tr>
+		</thead>
+		<tbody>
+    		{% for studio in studios %}
+		<tr>
+			<td>{{ studio.name }}</td>
+      <td>{{ studio.zip_code }}</td>
+      <td>{{ studio.country }}</td>
+      <td>{{ studio.website }}</td>
+		</tr>
+    		{% endfor %}
+		</tbody>
+		</table>
+	</div>
+{% endblock %}
