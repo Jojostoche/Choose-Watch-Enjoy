@@ -154,19 +154,22 @@ def actors():
     
 @app.route('/addstudio', methods=['POST', 'GET'])
 def add_studio():
-    title= APP_NAME + " | Add a new actor"
+    title= APP_NAME + " | Add a new studio"
     error = None
     msg = None
     if session['username']:
         if request.method=='POST':
         	   name = request.form['name']
-        	   if name is None :
+		   zip_code = request.form['zip_code']
+		   country = request.form['country']
+		   website = request.form['website']
+        	   if name is None or if zip_code is None or if country is None or if website is None :
         	   	error = 'All fields are mandatory.'
         	   else:
         	   	db = get_db()
-        	   	db.add_actor(name)
-        	   	msg = 'Actor was successfully added!'
-        return render_template('addactor.html', title=title, msg=msg, error=error)
+        	   	db.add_studio(name)
+        	   	msg = 'Studio was successfully added!'
+        return render_template('addstudio.html', title=title, msg=msg, error=error)
     else:
         return redirect(url_for('login'))
 
