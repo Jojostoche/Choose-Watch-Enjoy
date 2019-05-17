@@ -12,6 +12,8 @@
 		    {% if session['username'] %}<a href="/films">Films</a> | {% endif %}
 		    {% if session['username'] %}<a href="/addactor">Add actor</a> | {% endif %}
 		    {% if session['username'] %}<a href="/actors">Actors</a> | {% endif %}
+		    {% if session['username'] %}<a href="/addstudio">Add studio</a> | {% endif %}
+		    {% if session['username'] %}<a href="/studios">Studios</a> | {% endif %}
 		    {% if session['username'] %}<div style="text-align:right"><a href="/logout">Logout</a> {% else %} <a href="/login">Login</a> | {% endif %} 
 		    {% if session['username'] %}(Logged as <strong>{{ session['username'] }}</strong>){% endif %}</div>
         <hr>
