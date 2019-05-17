@@ -173,6 +173,13 @@ def add_studio():
     else:
         return redirect(url_for('login'))
 
+@app.route('/studios')
+def studios():
+    title= APP_NAME + " | List studios"
+    db = get_db()
+    studios = db.query("SELECT * from studio")
+    return render_template('studios.html', title=title, studios=studios)
+
 @app.route('/deletefilm')
 def delete_film(request):
     db = get_db()
