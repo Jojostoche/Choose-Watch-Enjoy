@@ -81,3 +81,10 @@ class db_handler:
             Add a new actor
         """
         self.edit('INSERT INTO actor (name) VALUES (?)', (name,))
+	
+	
+    def add_studio(self, name, zipp_code, country, website):
+        """
+            Add a new studio
+        """
+self.edit('INSERT INTO studio (name, zip_code, country, website) VALUES (?,?,?,?)', (name,zip_code, country, website,))
