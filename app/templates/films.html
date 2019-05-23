@@ -13,6 +13,8 @@
 				<td><strong>Date</strong></td>
 				<td><strong>Grade</strong></td>
 				<td><strong>Age</strong></td>
+				<td><strong>Studio</strong></td>
+				<td><strong>Actor</strong></td>
 				<td><strong>Actions</strong></td>
 			</tr>
 		</thead>
@@ -25,7 +27,9 @@
 			<td>{{ film.date }}</td>
 			<td>{{ film.grade }}</td>
 			<td>{{ film.age }}</td>
-			<td><a href="/editfilm?id={{ film.id }}">Edit</a><a href="/deletefilm?id={{ film.id }}">Delete</a></td>
+			<td>{{ film.studio }}</td>
+			<td>{{ film.actor }}</td>
+			<td><a href="/editfilm?id={{ film.id }}">Edit</a>&nbsp;&nbsp;<a href="/deletefilm?id={{ film.id }}">Delete</a></td>
 		</tr>
     		{% endfor %}
 		</tbody>

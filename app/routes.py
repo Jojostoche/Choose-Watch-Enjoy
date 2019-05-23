@@ -103,6 +103,7 @@ def add_film():
     error = None
     msg = None
     if session['username']:
+    	db = get_db()
         if request.method=='POST':
         	   original_title = request.form['original_title']
         	   original_language = request.form['original_language']
@@ -110,13 +111,16 @@ def add_film():
         	   date = request.form['date']
         	   grade = request.form['grade']
         	   age = request.form['age']
-        	   if original_title is None or original_language is None or duration is None or date is None or grade is None or age is None :
+        	   studio = request.form['studio']
+        	   actor = request.form['actor']
+        	   if original_title is None or original_language is None or duration is None or date is None or grade is None or age is None or studio is None or actor is None:
         	   	error = 'All fields are mandatory.'
         	   else:
-        	   	db = get_db()
-        	   	db.add_film(original_title, original_language, duration, date, grade, age)
+        	   	db.add_film(original_title, original_language, duration, date, grade, age, studio, actor)
         	   	msg = 'Film was successfully added!'
-        return render_template('addfilm.html', title=title, msg=msg, error=error)
+	studios = db.query("SELECT * FROM studio")
+	actors = db.query("SELECT * FROM actor")
+        return render_template('addfilm.html', title=title, studios=studios, actors=actors, msg=msg, error=error)
     else:
         return redirect(url_for('login'))
 
@@ -163,11 +167,11 @@ def add_studio():
 		   zip_code = request.form['zip_code']
 		   country = request.form['country']
 		   website = request.form['website']
-        	   if name is None or if zip_code is None or if country is None or if website is None :
+        	   if name is None or zip_code is None or country is None or website is None :
         	   	error = 'All fields are mandatory.'
         	   else:
-        	   	db = get_db()
-        	   	db.add_studio(name)
+    			db = get_db()
+        	   	db.add_studio(name, zip_code, country, website)
         	   	msg = 'Studio was successfully added!'
         return render_template('addstudio.html', title=title, msg=msg, error=error)
     else:
