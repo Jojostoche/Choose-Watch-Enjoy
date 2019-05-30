@@ -93,3 +93,5 @@ class db_handler:
             Add a new studio
         """
         self.edit('INSERT INTO studio (name, zip_code, country, website) VALUES (?,?,?,?)', (name, zip_code, country, website,))
+
+

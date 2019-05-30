@@ -81,22 +81,6 @@ def logout():
     session['username'] = None
     return render_template('logout.html', title=title)
 
-@app.route('/ex1')
-def ex1():
-    title = "My App - Example 1"
-    user = {'username': 'Test'}
-    posts = [
-        {
-            'author': {'username': 'Rambo'},
-            'body': 'Beautiful day in Geneva!'
-        },
-        {
-            'author': {'username': 'Susan'},
-            'body': 'The Avengers movie was so cool!'
-        }
-    ]
-    return render_template('ex1.html', title=title, user=user, posts=posts)
-
 @app.route('/addfilm', methods=['POST', 'GET'])
 def add_film():
     title= APP_NAME + " | Add a new film"
@@ -128,8 +112,8 @@ def add_film():
 def films():
     title= APP_NAME + " | List films"
     db = get_db()
-    films = db.query("SELECT * from film")
-    return render_template('films.html', title=title, films=films)
+    films = db.query("SELECT c.*, a.*, b.name AS studio_name, b.id, e.name AS actor_name, f.*, e.id FROM film_studio AS a, studio AS b, film AS c, actor AS e, film_actor AS f WHERE a.film_id = c.id AND a.studio_id = b.id AND f.film_id = c.id AND f.actor_id = e.id")
+    return render_template('films.html', title=title, films=films, studios=studios, actors=actors)
     
 @app.route('/addactor', methods=['POST', 'GET'])
 def add_actor():
@@ -187,5 +171,5 @@ def studios():
 @app.route('/deletefilm')
 def delete_film(request):
     db = get_db()
-    db.query("DELETE FROM film WHERE id=" + request.query_string['id']) 
+    db.query("DELETE * FROM film WHERE id=" + request.query_string['id']) 
     return redirect(url_for('films'))

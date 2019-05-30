@@ -2,7 +2,9 @@
 
 {% block content %}
 	<div class="container">
-		<h1>List of Films</h1>
+		<h1>List of Films&nbsp;<IMG SRC="https://images.ecosia.org/iCI3OShC42kNMFjSynvWOzyBem8=/0x390/smart/http%3A%2F%2Fwww.emoji.co.uk%2Ffiles%2Fmozilla-emojis%2Fobjects-mozilla%2F11848-film-projector.png" HEIGHT = 70 WIDTH = 70 style="margin:0 0px 10 10px;">
+      		</h1>
+      		<a href="/addfilm"> Add a Film </a>
       		<br>
 		<table class="table">
 		<thead>
@@ -27,9 +29,9 @@
 			<td>{{ film.date }}</td>
 			<td>{{ film.grade }}</td>
 			<td>{{ film.age }}</td>
-			<td>{{ film.studio }}</td>
-			<td>{{ film.actor }}</td>
-			<td><a href="/editfilm?id={{ film.id }}">Edit</a>&nbsp;&nbsp;<a href="/deletefilm?id={{ film.id }}">Delete</a></td>
+			<td>{{ film.studio_name }}</td>
+			<td>{{ film.actor_name }}</td>
+			<td><strong><a href="/editfilm?id={{ film.id }}"style="color:#3ADF00;">Edit</a>&nbsp;&nbsp;<a href="/deletefilm?id={{ film.id }}"style="color:#FE2E2E;">Delete</a></strong></td>
 		</tr>
     		{% endfor %}
 		</tbody>
