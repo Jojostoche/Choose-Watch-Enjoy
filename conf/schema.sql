@@ -134,5 +134,22 @@ INSERT INTO role (id, name) VALUES (2,"user");
 INSERT INTO user (username, passwd_hash, first_name, last_name, email, role_id) VALUES ('jojostoche','7110eda4d09e062aa5e4a390b0a572ac0d2c0220','Joachim','Bach','yolo@yolo.yolo','1');
 INSERT INTO user (username, passwd_hash, first_name, last_name, email, role_id) VALUES ('totoche','7110eda4d09e062aa5e4a390b0a572ac0d2c0220','Theo','Mosca','toto@toto.toto','1');
 
+-- Add to genre
+INSERT INTO genre (name) VALUES ('horror');
+INSERT INTO genre (name) VALUES ('comedy');
+INSERT INTO genre (name) VALUES ('action');
+INSERT INTO genre (name) VALUES ('thriller');
+INSERT INTO genre (name) VALUES ('animation');
+INSERT INTO genre (name) VALUES ('love story');
+INSERT INTO genre (name) VALUES ('science fiction');
+
+-- Add Studio
+
+INSERT INTO studio (name, zip_code, country, website) VALUES ('Paramount Pictures France','20-24, rue Jacques Ibert
+92300 Levallois-Perret','France','http://www.paramountpictures.fr/');
+
+-- Add Actor
+
+INSERT INTO actor (name) VALUES ('Jovan Adepo');
 
 

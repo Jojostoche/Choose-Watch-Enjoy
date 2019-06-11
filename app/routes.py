@@ -97,14 +97,16 @@ def add_film():
         	   age = request.form['age']
         	   studio = request.form['studio']
         	   actor = request.form['actor']
-        	   if original_title is None or original_language is None or duration is None or date is None or grade is None or age is None or studio is None or actor is None:
+        	   genre = request.form['genre']
+        	   if original_title is None or original_language is None or duration is None or date is None or grade is None or age is None or studio is None or actor is None or genre is None:
         	   	error = 'All fields are mandatory.'
         	   else:
-        	   	db.add_film(original_title, original_language, duration, date, grade, age, studio, actor)
+        	   	db.add_film(original_title, original_language, duration, date, grade, age, studio, actor, genre)
         	   	msg = 'Film was successfully added!'
 	studios = db.query("SELECT * FROM studio")
 	actors = db.query("SELECT * FROM actor")
-        return render_template('addfilm.html', title=title, studios=studios, actors=actors, msg=msg, error=error)
+	genres = db.query("SELECT * FROM genre")
+        return render_template('addfilm.html', title=title, studios=studios, actors=actors, msg=msg, error=error, genres=genres)
     else:
         return redirect(url_for('login'))
 
@@ -112,8 +114,8 @@ def add_film():
 def films():
     title= APP_NAME + " | List films"
     db = get_db()
-    films = db.query("SELECT c.*, a.*, b.name AS studio_name, b.id, e.name AS actor_name, f.*, e.id FROM film_studio AS a, studio AS b, film AS c, actor AS e, film_actor AS f WHERE a.film_id = c.id AND a.studio_id = b.id AND f.film_id = c.id AND f.actor_id = e.id")
-    return render_template('films.html', title=title, films=films, studios=studios, actors=actors)
+    films = db.query("SELECT c.*, a.*, b.name AS studio_name, b.id, e.name AS actor_name, f.*, e.id, g.id, g.name AS genre_name, h.* FROM film_studio AS a, studio AS b, film AS c, actor AS e, film_actor AS f, genre AS g, film_genre AS h WHERE a.film_id = c.id AND a.studio_id = b.id AND f.film_id = c.id AND f.actor_id = e.id AND c.id = h.film_id AND g.id = h.genre_id")
+    return render_template('films.html', title=title, films=films, studios=studios, actors=actors, genres=genres)
     
 @app.route('/addactor', methods=['POST', 'GET'])
 def add_actor():
@@ -173,3 +175,12 @@ def delete_film(request):
     db = get_db()
     db.query("DELETE * FROM film WHERE id=" + request.query_string['id']) 
     return redirect(url_for('films'))
+
+@app.route('/genres')
+def genres():
+    title= APP_NAME + " | List genres"
+    db = get_db()
+    genres = db.query("SELECT * FROM genre")
+    return render_template('genres.html', title=title, genres=genres)
+
+

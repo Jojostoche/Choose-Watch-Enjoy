@@ -5,14 +5,17 @@
     	<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" rel="stylesheet" media="screen">
     </head>
     <body>
-	    <div><a href="/">Home</a> | 
+    	<SPAN style="position: absolute; top: 10; left: 500;"><strong> <FONT size="5">Choose-Watch-Enjoy</FONT></strong></SPAN>
+	    <SPAN style="position: absolute; top: 20; left: 10;"><a href="/">Home</a> | 
 		    {% if session['username'] %}<a href="/users">Users</a> | {% endif %}
 		    {% if session['username'] %}<a href="/films">Films</a> | {% endif %}
 		    {% if session['username'] %}<a href="/actors">Actors</a> | {% endif %}
-		    {% if session['username'] %}<a href="/studios">Studios</a> | {% endif %}
-		    {% if session['username'] %}<div style="text-align:right"><a href="/logout">Logout</a> {% else %} <a href="/login">Login</a> | {% endif %} 
-		    {% if session['username'] %}(Logged as <strong>{{ session['username'] }}</strong>){% endif %}</div>
-        <hr>
+		    {% if session['username'] %}<a href="/studios">Studios</a> {% endif %}
+		    {% if session['username'] %}</SPAN><SPAN style="position: absolute; top: 20; left: 1015;"><a href="/logout"><IMG SRC="https://images.ecosia.org/aSux5SSaGYQUP4tZ2F38eqI52hI=/0x390/smart/http%3A%2F%2Fwww.emoji.co.uk%2Ffiles%2Fmicrosoft-emojis%2Fobjects-windows10%2F9804-door.png" HEIGHT = 28 WIDTH = 28 ></IMG></a><a href="/logout">Logout</a> {% else %} <a href="/login">Login</a> {% endif %} </SPAN>
+		    {% if session['username'] %}<SPAN style="position: absolute; top: 20; left: 1095;">(Logged as <strong>{{ session['username'] }}</strong>)</SPAN>{% endif %}
+        <HR style="margin: 50px 0px 0px";> </HR>
         {% block content %}{% endblock %}
+
+
     </body>
 </html>

@@ -1,13 +1,31 @@
 {% extends "base.html" %}
 
 {% block content %}
-	<div class="container", style="text-align:center">
+	<br>
+    <div class="container", style="text-align:center">
 		<h1>Welcome <b>{% if session['username'] %} {{ session['username'] }} {% else %} Guest {% endif %}</b>!</h1>
-      		<br>
-    		<div style="text-align:center"><p>Welcome in Choose-Watch-Enjoy :-)</p></div>
-    		<IMG SRC="https://images.ecosia.org/thcug8Benxwu3E7REnBugdYv0d8=/0x390/smart/https%3A%2F%2Fimages.emojiterra.com%2Fgoogle%2Fandroid-oreo%2F512px%2F1f3e1.png" HEIGHT = 150 WIDTH = 150>
+    		<span style="position: absolute; top: 160; left: 500;"><h3>Access to all the pages :</h3></span>
+    		<br>
+    		<nav>
+    			<ul>
+    				<span style="position: absolute; top: 220; left: 420;"><li ><a href="/users">List of Users    |</a>
+                        <a href="/adduser">   Add a User</a></li></span>
+                    <span style="position: absolute; top: 220; left: 680;"><li ><a href="/actors">List of Actors    |</a>
+                        <a href="/addactor">   Add an Actor</a></li></span>
+                    <span style="position: absolute; top: 290; left: 420;"><li ><a href="/studios">List of Studios    |</a>
+                        <a href="/addstudio">   Add a Studio</a></li></span>
+                    <span style="position: absolute; top: 290; left: 680;"><li ><a href="/films">List of Films    |</a>
+                        <a href="/addfilm">   Add a Film</a></li></span>
+                </ul>
+            </nav>
+    					
+
+
+    	   <span><IMG SRC="https://images.ecosia.org/k2NKk9WEWygOttXrGMdG1Hcg8Yc=/0x390/smart/http%3A%2F%2Fwww.ac-grenoble.fr%2Fecoles%2Fvienne1%2FIMG%2Fpng%2Fclap_cinema-2.png" HEIGHT = 120 WIDTH = 130 style="position: absolute; top: 185; left: 900;"></IMG></span>
+
+           <span><IMG SRC="https://images.ecosia.org/vRXaIujscTWlNYkyVGU5Prkr_kE=/0x390/smart/https%3A%2F%2Fupload.wikimedia.org%2Fwikipedia%2Fcommons%2Fthumb%2F6%2F65%2FOcticons-device-camera-video.svg%2F1024px-Octicons-device-camera-video.svg.png" HEIGHT = 150 WIDTH = 150 style="position: absolute; top: 170; left: 245;"></IMG></span>
     		<br>
     		<br>
-    		<strong><div style="text-align:center"><font size="70"><font face="Times New Roman"><p>Home</p></div></strong>
+    		<strong><div style="position: absolute; top: 350; left: 530;"><font size="70"><font face="Times New Roman"><p>Home Page</p></div></strong>
 	</div>
 {% endblock %}

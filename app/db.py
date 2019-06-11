@@ -70,7 +70,7 @@ class db_handler:
         """
         self.edit('INSERT INTO user (username, passwd_hash, first_name, last_name, email, role_id) VALUES (?,?,?,?,?,?)', (username, passwd_hash, firstname, lastname, email, role,))
 
-    def add_film(self, original_title, original_language, duration, date, grade, age, studio_id, actor_id):
+    def add_film(self, original_title, original_language, duration, date, grade, age, studio_id, actor_id, genre_id):
         """
             Add a new film
         """
@@ -80,6 +80,7 @@ class db_handler:
 	print("Film ID: ", film_id)
         self.edit('INSERT INTO film_studio (film_id, studio_id) VALUES (?,?)', (film_id, studio_id,))
         self.edit('INSERT INTO film_actor (film_id, actor_id) VALUES (?,?)', (film_id, actor_id,))
+        self.edit('INSERT INTO film_genre (film_id, genre_id) VALUES (?,?)', (film_id, genre_id,))
  
     def add_actor(self, name):
         """
@@ -93,5 +94,7 @@ class db_handler:
             Add a new studio
         """
         self.edit('INSERT INTO studio (name, zip_code, country, website) VALUES (?,?,?,?)', (name, zip_code, country, website,))
+
+
 
 

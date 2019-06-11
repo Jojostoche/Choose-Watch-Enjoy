@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block content %}
+	<div class="container">
+		<h1>List of Users</h1>
+      		<a href="/adduser"> Add a User </a>
+      		<br>
+		<table class="table">
+		<thead>
+			<tr><td><strong>name</strong></td>
+		</thead>
+		<tbody>
+    		{% for genre in genres %}
+		<tr>
+			<td>{{ genre.name }}</td>
+		</tr>
+    		{% endfor %}
+		</tbody>
+		</table>
+	</div>
+{% endblock %}
